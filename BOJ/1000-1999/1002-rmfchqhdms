@@ -1,0 +1,22 @@
+import sys
+read = sys.stdin.readline
+
+Test_case = int(read())
+
+for i in range(Test_case):
+    x1,y1,r1,x2,y2,r2 = map(int, read().split())
+
+    dx = x2 - x1
+    dy = y2 - y1
+    d2 = dx*dx + dy*dy#두 중심 거리의 제곱
+    sum_r = r1 + r2#반지름 합
+    diff_r = abs(r1 - r2)#반지름 차 (절댓값)
+
+    if d2 == 0 and r1 == r2:# 같은 원,교점 무한
+        print(-1)
+    elif d2 > sum_r*sum_r or d2 < diff_r*diff_r:#서로 떨어짐 또는 한 원이 다른 원 안
+        print(0)
+    elif d2 == sum_r*sum_r or d2 == diff_r*diff_r:# 외접 또는 내접
+        print(1)
+    else:
+        print(2)
